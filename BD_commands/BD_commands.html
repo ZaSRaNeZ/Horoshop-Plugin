@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <title>Create Category Horoshop</title>
+    <meta charset="UTF-8">
+    <script src="../jQuery.js"></script>
+    <script src="../scripts.js" defer></script>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:700&amp;subset=cyrillic,cyrillic-ext" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet">
+
+</head>
+
+
+<style>
+
+    
+</style>
+
+
+
+
+<body>
+    <header>
+
+        <div class="logo"> <img class="logo-img" src="../horoshop_logo.svg" alt=""></div>
+        <div id="back"></div>
+
+    </header>
+
+
+    <div class="tabs">
+        <div class="tab active_tab" value="bd_delete"  > Удаление </div>
+        <div class="tab" value="bd_add" > Добавление</div>
+        <div class="tab" value="bd_Update" >Обновление</div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="textarea_block bd_commands">
+
+
+        <div class="tab_content" id="bd_delete" style="display: block">
+            <div class="code_block">
+            <h3>Удалить все страницы каталога</h3>
+            <p class="code_copy">
+                <span style="color: #993333; font-weight: bold;">DELETE</span> <span style="color: #993333; font-weight: bold;">FROM</span> pages <span style="color: #993333; font-weight: bold;">WHERE</span> handler <span style="color: #66cc66;">&lt;&gt;</span> <span style="color: #cc66cc;">17</span> <span style="color: #993333; font-weight: bold;">AND</span> handler <span style="color: #993333; font-weight: bold;">IN</span> <span style="color: #66cc66;">&#40;</span><span style="color: #993333; font-weight: bold;">SELECT</span> id <span style="color: #993333; font-weight: bold;">FROM</span> handlers <span style="color: #993333; font-weight: bold;">WHERE</span> <span style="color: #993333; font-weight: bold;">TYPE</span> <span style="color: #66cc66;">=</span><span style="color: #cc66cc;">2</span><span style="color: #66cc66;">&#41;</span>
+            </p>
+
+
+        </div>
+        
+        <div class="code_block">
+            <h3>Удалить все товары </h3>
+            <p class="code_copy">
+                <span style="color: #993333; font-weight: bold;">DELETE</span> <span style="color: #993333; font-weight: bold;">FROM</span> h_catalog; <br>
+                <span style="color: #993333; font-weight: bold;">DELETE</span> <span style="color: #993333; font-weight: bold;">FROM</span> h_product_characteristics;
+            </p>
+
+
+        </div>
+        <div class="code_block">
+            <h3>Удалить все URL <span  style="color:#d90a0a"> !!! Важно после пунктов выше</span></h3>
+            <p class="code_copy">
+                <span style="color: #993333; font-weight: bold;">DELETE</span> <span style="color: #993333; font-weight: bold;">FROM</span> p_url <span style="color: #993333; font-weight: bold;">WHERE</span> record != 1;
+            </p>
+
+
+        </div>
+        <div class="code_block">
+            <h3 >Удалить все товары у которых значение отображать "нет" <br><span style="font-size: 12px; font-style: italic;">- возможны другие вариации условий для удаления</span> </h3>
+            <p class="code_copy">
+               
+               <span style="color: #993333; font-weight: bold;">DELETE</span> <span style="color: #993333; font-weight: bold;">FROM</span> h_product_characteristics <span style="color: #993333; font-weight: bold;">WHERE</span> id <span style="color: #66cc66;">IN</span> (<span style="color: #993333; font-weight: bold;">SELECT</span> item_id <span style="color: #993333; font-weight: bold;">FROM</span> h_catalog <span style="color: #993333; font-weight: bold;">WHERE</span> display_in_showcase = 0); <br> <br>
+               
+               
+                <span style="color: #993333; font-weight: bold;">DELETE</span> <span style="color: #993333; font-weight: bold;">FROM</span> h_catalog <span style="color: #993333; font-weight: bold;">WHERE</span> display_in_showcase <span style="color: #66cc66;">=</span> <span style="color: #cc66cc;">0;</span> 
+                
+                
+                
+                
+                
+            
+            </p>
+
+
+        </div>
+        </div>
+        
+        <div class="tab_content" id="bd_add">
+            <div class="code_block">
+            <h3 >Добавить значение в справочник<br><span style="font-size: 12px; font-style: italic;">- book_366 изменяеться взять с админки (алиас справчника)</span> </h3>
+            <p class="code_copy">
+                <span style="color: #993333; font-weight: bold;">INSERT</span> <span style="color: #993333; font-weight: bold;">INTO</span> book_366 <span style="color: #66cc66;">&#40;</span>title<span style="color: #66cc66;">&#41;</span> <span style="color: #993333; font-weight: bold;">VALUES</span> <span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'крем'</span><span style="color: #66cc66;">&#41;</span>;
+            </p>
+
+
+        </div>
+            
+        </div>
+        
+        <div class="tab_content" id="bd_Update">
+            
+        </div>
+        
+
+
+
+
+    </div>
+<script src="bd_tabs.js"></script>
+<script src="copy_code.js"></script>
+
+
+
+
+   
+
+</body>
+
+</html>
