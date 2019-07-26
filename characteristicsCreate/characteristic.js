@@ -30,11 +30,11 @@
 	        .text(text),
 	        div = $('<pre />')
 
-	        .appendTo(document.body)
+	    .appendTo(document.body)
 	        .append(textArea);
 	    $('<input type="button" value="CLOSE">')
 
-	        .appendTo(div)
+	    .appendTo(div)
 	        .click(() => div.remove());
 	}
 
@@ -75,7 +75,7 @@
 
 	    /*characType = select   - выбор из списка
 	      characType = input   - Строка
-        
+	       
 	    */
 
 	    var localizeParam = 0;
@@ -122,7 +122,7 @@
 
 
 	            "SET @stmt = case @colcheck \n" +
-	            "WHEN 0 THEN \" ALTER TABLE " + tableName + " ADD `" + xEn + "` "+columnType+" NOT NULL; \"" +
+	            "WHEN 0 THEN \" ALTER TABLE " + tableName + " ADD `" + xEn + "` " + columnType + " NOT NULL; \"" +
 	            "ELSE \"SET @t=@t\"" +
 	            "END;\n" +
 
@@ -168,7 +168,7 @@
 	                "EXECUTE stmt;\n" +
 	                "DEALLOCATE PREPARE stmt;\n\n" +
 
-	                "SELECT CONCAT ((SELECT `title` FROM handlers WHERE `table` = '" + tableName + "'), '-" + x[ind] + "') INTO @nameBook;" +
+	                "SELECT CONCAT ((SELECT `title` FROM handlers WHERE `table` = '" + tableName + "'), '-" + x[ind] + "') INTO @nameBook;\n" +
 
 	                "SET @stmt = case @colcheck \n" +
 	                "WHEN 0 THEN CONCAT(\" UPDATE books \n SET \n `title` = @nameBook,`table` = @name WHERE id =\", @maxBooksid) \n" +
@@ -188,7 +188,22 @@
 
 	                "PREPARE stmt from @stmt;\n" +
 	                "EXECUTE stmt;\n" +
-	                "DEALLOCATE PREPARE stmt;\n\n";
+	                "DEALLOCATE PREPARE stmt;\n\n" +
+	                '#---------------Access   4 12 13 14 \n\n' +
+
+	                'SET @stmt = case @colcheck\n' +
+	                'WHEN 0 THEN CONCAT("INSERT INTO h_common_access (type, item, role, access_level) \n' +
+	                '  VALUES (3, ", @maxBooksid ,", ",(SELECT id FROM h_admins_roles WHERE `title` = \'owner\'),", 1),(3, ", @maxBooksid ,", ",(SELECT id FROM h_admins_roles WHERE `title` = \'owner\'),", 2),(3, ", @maxBooksid ,", ",(SELECT id FROM h_admins_roles WHERE `title` = \'owner\'),", 3), \n' +
+	                '  (3, ", @maxBooksid ,", ",(SELECT id FROM h_admins_roles WHERE `title` = \'developer\'),", 1),(3, ", @maxBooksid ,", ",(SELECT id FROM h_admins_roles WHERE `title` = \'developer\'),", 2),(3, ", @maxBooksid ,", ",(SELECT id FROM h_admins_roles WHERE `title` = \'developer\'),", 3), \n' +
+	                '  (3, ", @maxBooksid ,", ",(SELECT id FROM h_admins_roles WHERE `title` = \'content-manager\'),", 1),(3, ", @maxBooksid ,", ",(SELECT id FROM h_admins_roles WHERE `title` = \'content-manager\'),", 2),(3, ", @maxBooksid ,", ",(SELECT id FROM h_admins_roles WHERE `title` = \'content-manager\'),", 3), \n' +
+	                '  (3, ", @maxBooksid ,", ",(SELECT id FROM h_admins_roles WHERE `title` = \'manager\'),", 1),(3, ", @maxBooksid ,", ",(SELECT id FROM h_admins_roles WHERE `title` = \'manager\'),", 2),(3, ", @maxBooksid ,", ",(SELECT id FROM h_admins_roles WHERE `title` = \'manager\'),", 3);") \n' +
+
+	                'ELSE "SET @t=@t"\n' +
+	                'END;\n' +
+	                'PREPARE stmt from @stmt;\n' +
+	                'EXECUTE stmt;\n' +
+	                'DEALLOCATE PREPARE stmt;\n\n'+
+	                '#---------------END \n\n';
 
 	        }
 
@@ -212,7 +227,7 @@
 
 
 	    var button = document.getElementById('Copy');
-	    button.addEventListener('click', function () {
+	    button.addEventListener('click', function() {
 
 
 
@@ -228,24 +243,24 @@
 
 	}
 
-	window.onload = function () {
+	window.onload = function() {
 
 
 	    let mb = document.getElementById("startCharac");
 	    mb.addEventListener("click", start);
 	    let CharList = document.getElementById("text");
-        let TableNameParam = document.getElementById("tableName");
+	    let TableNameParam = document.getElementById("tableName");
 	    if (localStorage.getItem("CharListAutosave")) {
 	        CharList.value = localStorage.getItem("CharListAutosave");
 	    }
-        if (localStorage.getItem("TableNameParamAutosave")) {
+	    if (localStorage.getItem("TableNameParamAutosave")) {
 	        TableNameParam.value = localStorage.getItem("TableNameParamAutosave");
-            TableNameParam.parentElement.style = 'border-color: red;'
+	        TableNameParam.parentElement.style = 'border-color: red;'
 	    }
-	    CharList.addEventListener("change", function () {
+	    CharList.addEventListener("change", function() {
 	        localStorage.setItem("CharListAutosave", CharList.value);
 	    });
-        TableNameParam.addEventListener("change", function () {
+	    TableNameParam.addEventListener("change", function() {
 	        localStorage.setItem("TableNameParamAutosave", TableNameParam.value);
 	    });
 
