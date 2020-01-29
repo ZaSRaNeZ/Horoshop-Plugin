@@ -2,9 +2,15 @@ var arrru = new Array('Я', 'я', 'Ю', 'ю', 'Ч', 'ч', 'Ш', 'ш', 'Щ', 'щ'
 
 var arren = new Array('Ya', 'ya', 'Yu', 'yu', 'Ch', 'ch', 'Sh', 'sh', 'Sh', 'sh', 'Zh', 'zh', 'A', 'a', 'B', 'b', 'V', 'v', 'G', 'g', 'D', 'd', 'E', 'e', 'E', 'e', 'Z', 'z', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'O', 'o', 'P', 'p', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'F', 'f', 'H', 'h', 'C', 'c', 'Y', 'y', '', '', '', '', 'E', 'e', '_');
 
+var arrSpez = [',', '/', '?', '\\', '$', '%', '\'', '"', ':', ';', '#', '@', '!', '*', '.'];
+function nameValidator(validText){
 
-function nameValidator(){
+	for(var i = 0; i < arrSpez.length ; i++){
+		validText.replace(arrSpez[i],'');
+	}
 
+	console.log(validText);
+	return validText;
 
 }
 
@@ -13,8 +19,7 @@ function cyrillToLatin(text) {
 		var reg = new RegExp(arrru[i], "g");
 		text = text.replace(reg, arren[i]);
 	}
-			text = text.replace(',','');
-		text = text.replace('/','');
+	text = nameValidator(text);
 	return text;
 }
 
