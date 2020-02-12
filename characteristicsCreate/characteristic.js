@@ -171,7 +171,7 @@ function start() {
 				"SELECT CONCAT ('book_',(SELECT max(id) FROM books)) INTO @name;\n" +
 
 				"SET @query = case @colcheck\n" +
-				"WHEN 0 THEN CONCAT(\"  CREATE TABLE \", @name, \"(  `id` int(11) NOT NULL AUTO_INCREMENT, `i18n_language` int(11) NOT NULL DEFAULT '1', `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL, `sortorder` int(11) NOT NULL, PRIMARY KEY (`id`,`i18n_language`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4\" )\n" +
+				"WHEN 0 THEN CONCAT(\"  CREATE TABLE \", @name, \"(  `id` int(11) NOT NULL AUTO_INCREMENT, `i18n_language` int(11) NOT NULL DEFAULT '1', `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL, `sortorder` int(11) NOT NULL, PRIMARY KEY (`id`,`i18n_language`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4\" )\n" +
 				"ELSE \"SET @t=@t\"\n" +
 
 				"END;\n" +
