@@ -57,7 +57,7 @@ return str.replace(/(^\s+|\s+$)/g, '');
         
   let node = function (name, id, parent) {
     
-    this.name = spaceDelete(name);
+    this.name = spaceDelete(name.replace(/[']/g,"''"));
     this.id = id;
     this.parent = parent;
     this.children = [];
