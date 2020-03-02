@@ -403,7 +403,7 @@
 
   }
 
-  #tableName {
+  #tableName, #parentCatname, #handlerName {
       margin: auto;
       display: block;
       border: 2px solid #a0a9af;
