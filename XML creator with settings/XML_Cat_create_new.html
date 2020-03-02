@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <title>Create cat Creator</title>
+    <meta charset="UTF-8">
+    <script src="../jQuery.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:700&amp;subset=cyrillic,cyrillic-ext" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet">
+    <script src="XML_cat_create_script_settings.js" defer></script>
+
+</head>
+
+
+<style>
+
+  div.logo::after {
+
+      content: 'Скрипт для создания харктеристик';
+      
+    }
+    div#settings:hover{
+        height: 150px;
+    }
+
+</style>
+
+
+<body>
+
+    <header>
+
+        <div class="logo"> <img class="logo-img" src="../horoshop_logo.svg" alt=""></div>
+<div id="back"></div>
+    </header>
+
+    <div id="textarea_block">
+
+<div id="settings">
+    <img id="settingsIcon" src="gear.png" alt="">
+    
+    
+    <input type="text" id="tableName" placeholder="Введи родительский раздел для формирования" value="Каталог">
+    <input type="text" id="tableName" placeholder="шаблон для разделов h_product_characteristics" value="h_product_characteristics">
+    
+    
+</div>
+
+
+
+        <textarea name="" id="text" cols="30" rows="10" placeholder="скопируйте все значения category сюда" autofocus></textarea>
+
+        <h3>Включить настройки</h3>
+        <div class="toogle">
+
+            <input type="radio" name="readFirstString" class="radio" id="yes">
+            <input type="radio" name="readFirstString" class="radio" id="no" checked>
+            <div class="radioBack yes"> YES</div>
+            <div class="radioBack no">NO</div>
+
+
+        </div>
+
+        <button id="startCatCreate" class="startButton">Погнали</button>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <script src="CharParseDOM.js"></script>
+    <script src="characteristic.js"></script>
+</body>
+
+</html>
