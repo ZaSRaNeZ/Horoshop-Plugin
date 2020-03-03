@@ -57,7 +57,7 @@ function start() {
 
 
       let node = function (name, id, parent) {
-          this.name = name;
+          this.name = name.trim();
           this.id = id;
           this.parent = parent;
           this.children = [];
@@ -178,7 +178,9 @@ function start() {
 
       for (let id in nodes) {
           if (nodes.hasOwnProperty(id) && nodes[id].parent === null) {
+            if(nodes[id].name != ''){
               nodesSqlText += printNodesSql(nodes[id]) + "\n";
+            }
           }
       }
 
