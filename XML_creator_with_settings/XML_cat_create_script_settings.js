@@ -211,6 +211,8 @@ button.addEventListener('click', function () {
 
 document.getElementById('sqlText').blur()
 });
+
+localStorage.clear();
 }
 
 
@@ -218,20 +220,22 @@ window.onload = function () {
   let mb = document.getElementById("startCatCreate");
   mb.addEventListener("click", start);
 
-	let CharList = document.getElementById("text");
-	let TableNameParam = document.getElementById("tableName");
-	if (localStorage.getItem("CharListAutosave")) {
-        CharList.value = localStorage.getItem("CharListAutosave");
-        TableNameParam.parentElement.style = 'border-color: red;'
-	}
-	if (localStorage.getItem("TableNameParamAutosave")) {
-		TableNameParam.value = localStorage.getItem("TableNameParamAutosave");
-		TableNameParam.parentElement.style = 'border-color: red;'
-	}
-	CharList.addEventListener("change", function () {
-		localStorage.setItem("CharListAutosave", CharList.value);
-	});
-	TableNameParam.addEventListener("change", function () {
-		localStorage.setItem("TableNameParamAutosave", TableNameParam.value);
-	});
+	
+  let parentCatNameText = document.getElementById("parentCatname");
+  let HandlerNameText = document.getElementById("handlerName");
+  if (localStorage.getItem("parentCatnameAutosave")) {
+      parentCatNameText.value = localStorage.getItem("parentCatnameAutosave");
+  }
+  if (localStorage.getItem("handlerNameAutosave")) {
+      HandlerNameText.value = localStorage.getItem("handlerNameAutosave");
+      HandlerNameText.parentElement.style = 'border-color: red;'
+  }
+  parentCatNameText.addEventListener("change", function () {
+      localStorage.setItem("parentCatnameAutosave", parentCatNameText.value);
+      console.log('sadsad');
+  });
+  HandlerNameText.addEventListener("change", function () {
+      localStorage.setItem("handlerNameAutosave", HandlerNameText.value);
+  });
+
 }
