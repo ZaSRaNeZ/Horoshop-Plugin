@@ -57,7 +57,7 @@ function start() {
 
 
       let node = function (name, id, parent) {
-          this.name = name.trim();
+          this.name = name.trim().replace(/[']/g,"''");
           this.id = id;
           this.parent = parent;
           this.children = [];
