@@ -1,9 +1,9 @@
 
 function start() {
   document.getElementById('textarea_block').style.display ='none';
-  var catalogSelect = 'SELECT DISTINCT `id` FROM pages WHERE `title` = \''+document.getElementById('parentCatname').value.trim()+'\' LIMIT 1;'
-  var handlerSelect = 'SELECT DISTINCT `id` FROM pages WHERE `title` = \''+document.getElementById('parentCatname').value.trim()+'\' LIMIT 1;'
-  
+  var catalogSelect = 'SELECT DISTINCT `id` FROM pages WHERE `title` = \''+document.getElementById('parentCatname').value.trim()+'\' LIMIT 1'
+  var handlerSelect = 'SELECT DISTINCT `id` FROM handlers WHERE `table` = \''+document.getElementById('handlerName').value.trim()+'\' LIMIT 1'
+  var settingsCheck = document.getElementById('yes').checked;
 
   (($) => {
       function str_replace(search, replace, subject, count) {
@@ -111,7 +111,7 @@ function start() {
 
       printResult(nodesText, true);
 
-      let sqlStart = "# LOCK TABLES `pages` WRITE, `languages` WRITE;\n" +
+      let sqlStart = "# LOCK TABLES `pages` WRITE, `languages` WRITE, `handlers` READ;\n" +
           "LOCK TABLES `pages` WRITE, `languages` AS L WRITE;\n" +
           "DROP TEMPORARY TABLE IF EXISTS `page_ids`;\n" +
           "CREATE TEMPORARY TABLE IF NOT EXISTS `page_ids` (\n" +
@@ -119,8 +119,14 @@ function start() {
           "  `id` INT(11) NOT NULL\n" +
           ");\n" +
           "SET SESSION sql_mode = '';\n" +
-          "INSERT INTO `page_ids` (`id`) VALUES (97);\n" +
-          "SET @sort_order = 1;\n";
+          "INSERT INTO `page_ids` (`id`) VALUES ("+ (settingsCheck ? catalogSelect : "97")+");\n" +
+          "SET @sort_order = 1;\n"+
+          "\n"+ (settingsCheck ? "SET @handler_Table_Name = CASE WHEN (" + handlerSelect + ") <> ''\n"+
+          "THEN (" + handlerSelect + ")\n"+
+          "ELSE 381 \n"+
+          "END; \n" : " ");
+
+
 
       let beginTemplate = "# START\n" +
           "# ------------------------------------\n" +
@@ -134,7 +140,7 @@ function start() {
           "              when 0 then CONCAT(\n" +
           "                  'INSERT INTO `pages` (`id`, `i18n_language`, `title`, `parent`, `handler`, `inmenu`, `insitemap`, `sortorder`) ',\n" +
           "                  '( ',\n" +
-          "                  'SELECT ', @LAST_ID, ', L.`id`, ''{{title}}'', ', @parent_id, ', 381, 1, 1, ', @sort_order, ' ',\n" +
+          "                  'SELECT ', @LAST_ID, ', L.`id`, ''{{title}}'', ', @parent_id, ', "+ (settingsCheck ? "@handler_Table_Name" : "381") +", 1, 1, ', @sort_order, ' ',\n" +
           "                  'FROM `languages` L'\n" +
           "                    ');'\n" +
           "                )\n" +
