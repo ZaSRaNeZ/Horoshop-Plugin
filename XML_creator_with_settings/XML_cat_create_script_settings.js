@@ -126,8 +126,8 @@ function start() {
           
           (settingsCheck ? "SET @handler_Check = (" + handlerSelect + ");\n"+
           "SET @handler_Table_Name = CASE WHEN (@handler_Check) IS NULL\n"+
-          "THEN (@handler_Check)\n"+
-          "ELSE (381) \n"+
+          "THEN (381)\n"+
+          "ELSE (@handler_Check) \n"+
           "END; \n" : " ");
 
 
@@ -217,4 +217,24 @@ document.getElementById('sqlText').blur()
 window.onload = function () {
   let mb = document.getElementById("startCatCreate");
   mb.addEventListener("click", start);
+
+  
+
+	let mb = document.getElementById("startCharac");
+	mb.addEventListener("click", start);
+	let CharList = document.getElementById("text");
+	let TableNameParam = document.getElementById("tableName");
+	if (localStorage.getItem("CharListAutosave")) {
+		CharList.value = localStorage.getItem("CharListAutosave");
+	}
+	if (localStorage.getItem("TableNameParamAutosave")) {
+		TableNameParam.value = localStorage.getItem("TableNameParamAutosave");
+		TableNameParam.parentElement.style = 'border-color: red;'
+	}
+	CharList.addEventListener("change", function () {
+		localStorage.setItem("CharListAutosave", CharList.value);
+	});
+	TableNameParam.addEventListener("change", function () {
+		localStorage.setItem("TableNameParamAutosave", TableNameParam.value);
+	});
 }

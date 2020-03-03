@@ -4,7 +4,7 @@
  
     "name": "Create Category Horoshop",
     "description": "This tools may do your work with HOROSHOP more easly ",
-    "version": "49.2",
+    "version": "49.4",
  
     "browser_action": {
         "default_icon": "icon.png",
