@@ -225,7 +225,8 @@ window.onload = function () {
 	let CharList = document.getElementById("text");
 	let TableNameParam = document.getElementById("tableName");
 	if (localStorage.getItem("CharListAutosave")) {
-		CharList.value = localStorage.getItem("CharListAutosave");
+        CharList.value = localStorage.getItem("CharListAutosave");
+        TableNameParam.parentElement.style = 'border-color: red;'
 	}
 	if (localStorage.getItem("TableNameParamAutosave")) {
 		TableNameParam.value = localStorage.getItem("TableNameParamAutosave");
