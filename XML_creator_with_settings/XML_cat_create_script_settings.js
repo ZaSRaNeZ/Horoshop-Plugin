@@ -218,10 +218,6 @@ window.onload = function () {
   let mb = document.getElementById("startCatCreate");
   mb.addEventListener("click", start);
 
-  
-
-	let mb = document.getElementById("startCharac");
-	mb.addEventListener("click", start);
 	let CharList = document.getElementById("text");
 	let TableNameParam = document.getElementById("tableName");
 	if (localStorage.getItem("CharListAutosave")) {
