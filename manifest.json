@@ -4,7 +4,7 @@
  
     "name": "Create Category Horoshop",
     "description": "This tools may do your work with HOROSHOP more easly ",
-    "version": "49.7",
+    "version": "50.0",
  
     "browser_action": {
         "default_icon": "icon.png",
@@ -14,7 +14,12 @@
         
     
     },
-  
+   "content_scripts": [
+   {
+     "matches": ["*://*.horoshop.ua/edit*"],
+     "js": ["submenuScript.js"]
+   }
+ ],
     
                           
     "permissions": [
