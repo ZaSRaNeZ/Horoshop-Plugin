@@ -104,7 +104,20 @@ var pattern ={
 info ={
 	'Настройки':[
 			{title:'Общие настройки',href:'/edit/utils/site_settings.php',submenu: []},
-			{title:'Шаблоны данных',href:'/edit/data.php?handler=1',submenu: []},
+			{title:'Шаблоны данных',href:'/edit/data.php?handler=1',submenu: [
+				{
+					title:'Каталог',
+					href:'/edit/forms/handlers.php?edit=17'
+				},
+				{
+					title:'Языки (контент)',
+					href:'/edit/data.php?handler=339'
+				},
+				{
+					title:'Структура сайта',
+					href:'/edit/forms/handlers.php?edit=4'
+				},
+			]},
 			{title:'Админы',href:'/edit/data.php?handler=7',submenu: []}
 
 		],

@@ -130,8 +130,7 @@ function start() {
 
 		var xEn = cyrillToLatin(x[ind]);
 
-		sqlText += "SET @colcheck =  (SELECT COUNT(COLUMN_NAME) AS EXIST FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = '" + tableName + "' AND `COLUMN_NAME` = '" + xEn + "');\n" +
-
+		sqlText +="SET @colcheck =  ((SELECT COUNT(COLUMN_NAME) AS EXIST FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = '"+ tableName +"' AND `COLUMN_NAME` = '" + xEn + "' LIMIT 1) + (SELECT COUNT(`id`) FROM `handlers_format` WHERE `parent` = (SELECT id FROM `handlers` WHERE `table` = '"+ tableName +"' LIMIT 1) AND `name` = '" + xEn + "'));"+
 
 			"SET @stmt = case @colcheck \n" +
 			"WHEN 0 THEN \" ALTER TABLE " + tableName + " ADD `" + xEn + "` " + columnType + " NOT NULL; \"" +
