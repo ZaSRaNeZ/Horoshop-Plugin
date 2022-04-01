@@ -106,6 +106,10 @@ info ={
 			{title:'Общие настройки',href:'/edit/utils/site_settings.php',submenu: []},
 			{title:'Шаблоны данных',href:'/edit/data.php?handler=1',submenu: [
 				{
+					title:'<span style="color:#ed4242">КАТАЛОГ: Товар</span>',
+					href:'/edit/forms/handlers.php?edit=381'
+				},
+				{
 					title:'Каталог',
 					href:'/edit/forms/handlers.php?edit=17'
 				},
@@ -117,6 +121,10 @@ info ={
 					title:'Структура сайта',
 					href:'/edit/forms/handlers.php?edit=4'
 				},
+				{
+					title:'Журнал действий',
+					href:'/edit/data.php?handler=421'
+				}
 			]},
 			{title:'Админы',href:'/edit/data.php?handler=7',submenu: []}
 
@@ -126,7 +134,8 @@ info ={
 			{title:'Файловый кеш',href:'/edit/utils/booster.php',submenu: []},
 			{title:'application.json',href:'/edit/utils/edit-json.php',submenu: []},
 			{title:'project.scss',href:'/edit/utils/edit-project-styles.php',submenu: []},
-			{title:'Галерея дизайнов',href:'/edit/utils/design.php',submenu: []}
+			{title:'Галерея дизайнов',href:'/edit/utils/design.php',submenu: []},
+			{title:'Импорт с прома',href:'/edit/utils/prom_import.php',submenu: []}
 		]
 
 },
